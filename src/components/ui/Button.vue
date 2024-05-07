@@ -4,6 +4,6 @@
     href="#"
     type="button"
   >
-    Download
+    <slot />
   </button>
 </template>
