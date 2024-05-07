@@ -1,14 +1,18 @@
 <template>
   <nav
-    class="w-full items-center p-4 bg-white border-b border-gray-200 shadow-sm"
+    class="w-full items-center p-4 bg-white border-b border-gray-200 shadow-sm fixed left-0 top-0"
   >
     <div class="max-w-5xl flex justify-between mx-auto">
       <div class="flex items-center">
-        <Pokeball />
-        <h1 class="ml-2 font-bold text-2xl">Pokedex</h1>
+        <RouterLink class="flex" to="/">
+          <Pokeball />
+          <h1 class="ml-2 font-bold text-2xl">Pokedex</h1>
+        </RouterLink>
       </div>
       <div>
-        <Button> Favorite </Button>
+        <RouterLink to="/favorite">
+          <Button> Favorite </Button>
+        </RouterLink>
       </div>
     </div>
   </nav>
