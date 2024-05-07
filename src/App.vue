@@ -1,6 +1,6 @@
 <template>
   <Navbar />
-  <div class="mt-20 max-w-5xl mx-auto">
+  <div class="my-24 max-w-5xl mx-auto px-2">
     <RouterView />
   </div>
 </template>
