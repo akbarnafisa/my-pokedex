@@ -7,9 +7,9 @@ import Favorites from './pages/Favorites/page.vue'
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: '/', component: LadingPage },
-    { path: '/detail/:id', component: Detail },
-    { path: '/favorite', component: Favorites },
+    { path: '/', component: LadingPage, name: 'home' },
+    { path: '/detail/:id', component: Detail, name: 'detail'},
+    { path: '/favorite', component: Favorites,  name: 'favorite'},
   ],
 })
 

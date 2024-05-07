@@ -10,8 +10,8 @@
         </RouterLink>
       </div>
       <div>
-        <RouterLink to="/favorite">
-          <Button> Favorite </Button>
+        <RouterLink :to="currentRoute.url">
+          <Button> {{ currentRoute.text }} </Button>
         </RouterLink>
       </div>
     </div>
@@ -19,6 +19,24 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
 import Pokeball from '../icon/Pokeball.vue'
 import Button from '@/components/ui/Button.vue'
+import { computed } from 'vue'
+
+const router = useRouter()
+
+const currentRoute = computed(() => {
+  const isFavorite = router.currentRoute.value.path === '/favorite'
+
+  return isFavorite
+    ? {
+        url: '/',
+        text: 'Home',
+      }
+    : {
+        url: '/favorite',
+        text: 'Favorite',
+      }
+})
 </script>
