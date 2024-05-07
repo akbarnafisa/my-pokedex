@@ -1,6 +1,6 @@
 <template>
   <article class="bg-white px-3 pt-3 rounded-lg border">
-    <RouterLink to="/favorite">
+    <RouterLink :to="`/detail/${id}`">
       <figure
         class="bg-gray-100 rounded-lg flex items-center justify-center h-36"
       >
