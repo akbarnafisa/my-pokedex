@@ -1,12 +1,12 @@
 <template>
-  <div>
-    <div v-if="pokemonData.length === 0">
+  <section>
+    <div v-if="pokemonData === null">
       <Spinner />
     </div>
     <template v-else>
       <PokeCardList :data="pokemonData" />
     </template>
-  </div>
+  </section>
 </template>
 
 <script lang="ts" setup>
@@ -20,9 +20,9 @@ import {
   CardListType,
 } from '@/utils/interface'
 
-const url = 'https://pokeapi.co/api/v2/pokemon?limit=20&offset=0'
+const url = 'https://pokeapi.co/api/v2/pokemon?limit=21&offset=0'
 
-const pokemonData = ref<CardListType[]>([])
+const pokemonData = ref<CardListType[] | null>(null)
 
 const fetchData = async () => {
   const response = await fetch(url)
