@@ -3,7 +3,7 @@
     <PokeCard
       v-for="item in props.data"
       :url="item.url"
-      :key="item.name"
+      :key="item.url"
     />
   </div>
 </template>
