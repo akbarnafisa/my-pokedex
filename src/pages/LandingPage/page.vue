@@ -27,7 +27,7 @@ import { ref, watch } from 'vue'
 import PokeCardList from '@/components/ui/PokeCardList.vue'
 import Spinner from '@/components/ui/Spinner.vue'
 
-import { useFetchLandingPage } from '@/utils/request'
+import { useFetchLandingPage } from '@/hooks/request'
 import SelectType from '@/components/ui/SelectType.vue'
 import Button from '@/components/ui/Button.vue'
 

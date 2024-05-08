@@ -19,7 +19,7 @@ import PokeCardList from '@/components/ui/PokeCardList.vue'
 import Spinner from '@/components/ui/Spinner.vue'
 
 import SelectType from '@/components/ui/SelectType.vue'
-import { useFetchPokemonTypes } from '@/utils/request'
+import { useFetchPokemonTypes } from '@/hooks/request'
 import { useRoute } from 'vue-router'
 import { computed } from 'vue'
 import Button from '@/components/ui/Button.vue'

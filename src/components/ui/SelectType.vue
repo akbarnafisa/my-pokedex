@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { useFetchTypeList } from '@/utils/request'
+import { useFetchTypeList } from '@/hooks/request'
 import { useRouter } from 'vue-router'
 
 defineProps({

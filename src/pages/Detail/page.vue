@@ -112,7 +112,7 @@ import IconHeight from '@/components/icon/IconHeight.vue'
 import IconWeight from '@/components/icon/IconWeight.vue'
 import BadgeTypes from '@/components/ui/BadgeTypes.vue'
 import IconHearth from '@/components/icon/IconHearth.vue'
-import { useFetchPokemonDetail, POKEAPI_URL } from '@/utils/request'
+import { useFetchPokemonDetail, POKEAPI_URL } from '@/hooks/request'
 import { useFavorites } from '@/utils/favorites'
 import Button from '@/components/ui/Button.vue'
 

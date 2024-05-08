@@ -51,7 +51,7 @@
 <script setup lang="ts">
 import IconHearth from '@/components/icon/IconHearth.vue'
 import BadgeTypes from './BadgeTypes.vue'
-import { useFetchPokemonDetail } from '@/utils/request'
+import { useFetchPokemonDetail } from '@/hooks/request'
 import Spinner from './Spinner.vue'
 import { useFavorites } from '@/utils/favorites'
 import { computed } from 'vue'

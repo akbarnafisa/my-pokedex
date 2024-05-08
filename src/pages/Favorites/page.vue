@@ -21,7 +21,7 @@ import { computed } from 'vue'
 
 import PokeCardList from '@/components/ui/PokeCardList.vue'
 
-import { POKEAPI_URL } from '@/utils/request'
+import { POKEAPI_URL } from '@/hooks/request'
 import { useFavorites } from '@/utils/favorites'
 import { useRouter } from 'vue-router'
 import Button from '@/components/ui/Button.vue'

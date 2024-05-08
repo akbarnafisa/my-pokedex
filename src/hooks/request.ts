@@ -3,7 +3,7 @@ import {
   PokemonDetailQuery,
   PokemonMainQuery,
   PokemonTypeQuery,
-} from './interface'
+} from '../utils/interface'
 import { ComputedRef } from 'vue'
 
 export const POKEAPI_URL = 'https://pokeapi.co/api/v2'
