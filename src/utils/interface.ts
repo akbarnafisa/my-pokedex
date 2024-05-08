@@ -34,9 +34,19 @@ export interface PokemonDetailQuery {
   weight: number
 }
 
+export interface PokemonTypeQuery {
+  id: number
+  name: string
+  pokemon: {
+    pokemon: {
+      name: string
+      url: string
+    }
+  }[]
+}
 
 export type CardListType = {
-  id: string,
+  id: string
   name: string
   image: string
   favorited: boolean

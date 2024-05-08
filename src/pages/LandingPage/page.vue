@@ -7,8 +7,9 @@
       Fail to fetch data
     </div>
     <template v-else>
+      <SelectType />
       <div v-for="group in data.pages">
-        <PokeCardList :data="group" />
+        <PokeCardList :data="group.results" />
       </div>
       <div ref="bottomPage"></div>
     </template>
@@ -23,6 +24,7 @@ import PokeCardList from '@/components/ui/PokeCardList.vue'
 import Spinner from '@/components/ui/Spinner.vue'
 
 import { useFetchLandingPage } from '@/utils/request'
+import SelectType from '@/components/ui/SelectType.vue'
 
 const { data, isLoading, isError, fetchNextPage, hasNextPage } =
   useFetchLandingPage()

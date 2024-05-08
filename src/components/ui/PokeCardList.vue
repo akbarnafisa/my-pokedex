@@ -1,7 +1,7 @@
 <template>
   <div class="card-wrapper">
     <PokeCard
-      v-for="item in props.data.results"
+      v-for="item in props.data"
       :url="item.url"
       :key="item.name"
     />
@@ -15,7 +15,7 @@ import { PokemonMainQuery } from '@/utils/interface'
 
 const props = defineProps({
   data: {
-    type: Object as PropType<PokemonMainQuery>,
+    type: Array as PropType<PokemonMainQuery['results']>,
     required: true,
   },
 })
