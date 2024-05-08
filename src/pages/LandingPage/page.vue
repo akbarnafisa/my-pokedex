@@ -1,10 +1,14 @@
 <template>
   <section>
-    <div v-if="isLoading">
+    <div v-if="isLoading" class="pt-20">
       <Spinner />
     </div>
-    <div v-else-if="data === undefined || isError">
-      Fail to fetch data
+    <div
+      v-else-if="data === undefined || isError"
+      class="flex items-center flex-col pt-20 gap-2"
+    >
+      <p>There was an issue loading the Pokémon. Please try again.</p>
+      <Button @click="refetch"> Retry </Button>
     </div>
     <template v-else>
       <SelectType />
@@ -25,9 +29,16 @@ import Spinner from '@/components/ui/Spinner.vue'
 
 import { useFetchLandingPage } from '@/utils/request'
 import SelectType from '@/components/ui/SelectType.vue'
+import Button from '@/components/ui/Button.vue'
 
-const { data, isLoading, isError, fetchNextPage, hasNextPage } =
-  useFetchLandingPage()
+const {
+  data,
+  isLoading,
+  isError,
+  fetchNextPage,
+  hasNextPage,
+  refetch,
+} = useFetchLandingPage()
 
 const bottomPage = ref(null)
 const targetIsVisible = ref(false)

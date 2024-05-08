@@ -1,10 +1,11 @@
 <template>
   <section>
-    <div v-if="isLoading">
+    <div v-if="isLoading" class="pt-20">
       <Spinner />
     </div>
     <div v-else-if="pokemonData === undefined || isError">
-      Fail to fetch data
+      <p>There was an issue loading the Pokémon. Please try again.</p>
+      <Button @click="refetch"> Retry </Button>
     </div>
     <template v-else>
       <SelectType :currentType="currentTypeId" />
@@ -21,6 +22,7 @@ import SelectType from '@/components/ui/SelectType.vue'
 import { useFetchPokemonTypes } from '@/utils/request'
 import { useRoute } from 'vue-router'
 import { computed } from 'vue'
+import Button from '@/components/ui/Button.vue'
 
 const route = useRoute()
 
@@ -28,7 +30,7 @@ const currentTypeId = computed(() => {
   return route.query.id as string
 })
 
-const { data, isLoading, isError } =
+const { data, isLoading, isError, refetch } =
   useFetchPokemonTypes(currentTypeId)
 
 const pokemonData = computed(() => {
@@ -39,5 +41,4 @@ const pokemonData = computed(() => {
     }
   })
 })
-
 </script>

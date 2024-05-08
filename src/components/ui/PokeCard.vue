@@ -1,6 +1,6 @@
 <template>
   <article>
-    <div v-if="isLoading">
+    <div v-if="isLoading" class="pt-10">
       <Spinner />
     </div>
     <div v-else-if="data === undefined || isError">

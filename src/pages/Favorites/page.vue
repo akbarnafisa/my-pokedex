@@ -1,7 +1,14 @@
 <template>
   <section>
-    <div v-if="!pokemonData || pokemonData.length === 0">
-      Fail to fetch data
+    <div
+      v-if="!pokemonData || pokemonData.length === 0"
+      class="flex items-center flex-col pt-20 gap-2"
+    >
+      <p>
+        No favorites yet. Visit the main page to select your top
+        Pokémon!
+      </p>
+      <Button @click="goToHomePage"> Home </Button>
     </div>
     <template v-else>
       <PokeCardList :data="pokemonData" />
@@ -16,8 +23,11 @@ import PokeCardList from '@/components/ui/PokeCardList.vue'
 
 import { POKEAPI_URL } from '@/utils/request'
 import { useFavorites } from '@/utils/favorites'
+import { useRouter } from 'vue-router'
+import Button from '@/components/ui/Button.vue'
 
 const { getFavorites } = useFavorites()
+const router = useRouter()
 
 const pokemonData = computed(() => {
   return getFavorites().map(fav => ({
@@ -25,4 +35,8 @@ const pokemonData = computed(() => {
     url: `${POKEAPI_URL}/pokemon/${fav}/`,
   }))
 })
+
+const goToHomePage = () => {
+  router.push('/')
+}
 </script>

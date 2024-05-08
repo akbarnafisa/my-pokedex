@@ -1,10 +1,14 @@
 <template>
   <section>
-    <div v-if="isLoading">
+    <div v-if="isLoading" class="pt-20">
       <Spinner />
     </div>
-    <div v-else-if="displayData === null || isError">
-      Fail to fetch data
+    <div
+      v-else-if="displayData === null || isError"
+      class="flex items-center flex-col pt-20 gap-2"
+    >
+      <p>There was an issue loading the Pokémon. Please try again</p>
+      <Button @click="refetch"> Retry </Button>
     </div>
 
     <article
@@ -110,6 +114,7 @@ import BadgeTypes from '@/components/ui/BadgeTypes.vue'
 import IconHearth from '@/components/icon/IconHearth.vue'
 import { useFetchPokemonDetail, POKEAPI_URL } from '@/utils/request'
 import { useFavorites } from '@/utils/favorites'
+import Button from '@/components/ui/Button.vue'
 
 const route = useRoute()
 
@@ -117,6 +122,7 @@ const {
   data: pokemonData,
   isLoading,
   isError,
+  refetch,
 } = useFetchPokemonDetail(
   `${POKEAPI_URL}/pokemon/${route.params.id}/`
 )

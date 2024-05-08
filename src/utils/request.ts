@@ -22,7 +22,7 @@ const fetchProjects = async ({
 }
 
 export const useFetchLandingPage = () => {
-  const { data, fetchNextPage, isError, isLoading, hasNextPage } =
+  const { data, fetchNextPage, isError, isLoading, hasNextPage, refetch } =
     useInfiniteQuery({
       queryKey: ['pokemon'],
       queryFn: fetchProjects,
@@ -40,18 +40,19 @@ export const useFetchLandingPage = () => {
     isError,
     fetchNextPage,
     hasNextPage,
+    refetch,
   }
 }
 
 export const useFetchPokemonDetail = (url: string) => {
-  const { isLoading, isError, data } = useQuery({
+  const { isLoading, isError, data, refetch } = useQuery({
     queryKey: [url],
     queryFn: () => fetcher<PokemonDetailQuery>(url),
     staleTime: 3000,
     refetchOnWindowFocus: false,
   })
 
-  return { isError, isLoading, data }
+  return { isError, isLoading, data, refetch }
 }
 
 export const useFetchPokemonTypes = (id: ComputedRef<string>) => {
