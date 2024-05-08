@@ -1,8 +1,12 @@
 <template>
   <section>
-    <div v-if="displayData === null">
+    <div v-if="isLoading">
       <Spinner />
     </div>
+    <div v-else-if="displayData === null || isError">
+      Fail to fetch data
+    </div>
+
     <article
       v-else
       class="bg-white p-4 md:p-6 rounded-lg border gap-6 flex flex-col md:flex-row"
@@ -90,8 +94,7 @@
 </template>
 
 <script setup lang="ts">
-import { PokemonDetailQuery } from '@/utils/interface'
-import { computed, onMounted, ref } from 'vue'
+import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 import Spinner from '@/components/ui/Spinner.vue'
@@ -99,24 +102,18 @@ import IconHeight from '@/components/icon/IconHeight.vue'
 import IconWeight from '@/components/icon/IconWeight.vue'
 import BadgeTypes from '@/components/ui/BadgeTypes.vue'
 import IconHearth from '@/components/icon/IconHearth.vue'
+import { useFetchDetailPage, POKEAPI_URL } from '@/utils/request'
 
 const route = useRoute()
 
-const url = `https://pokeapi.co/api/v2/pokemon/${route.params.id}/`
-const pokemonData = ref<PokemonDetailQuery | null>(null)
-
-const fetchData = async () => {
-  const response = await fetch(url)
-  const res = (await response.json()) as PokemonDetailQuery
-  pokemonData.value = res
-}
-
-onMounted(() => {
-  fetchData()
-})
+const {
+  data: pokemonData,
+  isLoading,
+  isError,
+} = useFetchDetailPage(`${POKEAPI_URL}/${route.params.id}`)
 
 const displayData = computed(() => {
-  if (pokemonData.value === null) return null
+  if (pokemonData.value === undefined) return null
 
   return {
     id: String(pokemonData.value.id),

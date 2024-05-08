@@ -1,13 +1,9 @@
 <template>
   <div class="card-wrapper">
     <PokeCard
-      v-for="item in props.data"
-      :id="item.id"
+      v-for="item in props.data.results"
+      :url="item.url"
       :key="item.name"
-      :favorited="item.favorited"
-      :name="item.name"
-      :image="item.image"
-      :types="item.types"
     />
   </div>
 </template>
@@ -15,11 +11,11 @@
 <script setup lang="ts">
 import { PropType } from 'vue';
 import PokeCard from './PokeCard.vue'
-import { CardListType } from '@/utils/interface';
+import { PokemonMainQuery } from '@/utils/interface';
 
 const props = defineProps({
   data: {
-    type: Array as PropType<Array<CardListType>>,
+    type: Object as PropType<PokemonMainQuery>,
     required: true,
   },
 })
