@@ -3,37 +3,42 @@
     <div v-if="isLoading">
       <Spinner />
     </div>
-    <div v-else-if="data === undefined || isError">Fail to fetch data</div>
+    <div v-else-if="data === undefined || isError">
+      Fail to fetch data
+    </div>
     <template v-else>
-      <PokeCardList :data="data" />
+      <div v-for="group in data.pages">
+        <PokeCardList :data="group" />
+      </div>
+      <div ref="bottomPage"></div>
     </template>
   </section>
 </template>
 
 <script lang="ts" setup>
+import { useIntersectionObserver } from '@vueuse/core'
+import { ref, watch } from 'vue'
+
 import PokeCardList from '@/components/ui/PokeCardList.vue'
 import Spinner from '@/components/ui/Spinner.vue'
 
 import { useFetchLandingPage } from '@/utils/request'
 
-const { data, isLoading, isError } = useFetchLandingPage()
+const { data, isLoading, isError, fetchNextPage, hasNextPage } =
+  useFetchLandingPage()
 
-// const getPokemonData = async (res: PokemonMainQuery['results']) => {
-//   const promises = res.map(item => {
-//     return fetch(item.url)
-//       .then(response => response.json())
-//       .then((results: PokemonDetailQuery) => {
-//         return {
-//           id: String(results.id),
-//           name: results.name,
-//           image: results.sprites.front_default,
-//           favorited: false,
-//           types: results.types.map(item => item.type.name),
-//         }
-//       })
-//   })
+const bottomPage = ref(null)
+const targetIsVisible = ref(false)
 
-//   const results = await Promise.all(promises)
-//   return results
-// }
+useIntersectionObserver(bottomPage, ([{ isIntersecting, time }]) => {
+  if (time > 1000) {
+    targetIsVisible.value = isIntersecting
+  }
+})
+
+watch(targetIsVisible, async newValue => {
+  if (newValue && hasNextPage.value) {
+    fetchNextPage()
+  }
+})
 </script>
