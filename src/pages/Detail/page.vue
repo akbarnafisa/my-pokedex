@@ -102,7 +102,7 @@ import IconHeight from '@/components/icon/IconHeight.vue'
 import IconWeight from '@/components/icon/IconWeight.vue'
 import BadgeTypes from '@/components/ui/BadgeTypes.vue'
 import IconHearth from '@/components/icon/IconHearth.vue'
-import { useFetchDetailPage, POKEAPI_URL } from '@/utils/request'
+import { useFetchPokemonDetail, POKEAPI_URL } from '@/utils/request'
 
 const route = useRoute()
 
@@ -110,7 +110,7 @@ const {
   data: pokemonData,
   isLoading,
   isError,
-} = useFetchDetailPage(`${POKEAPI_URL}/${route.params.id}/`)
+} = useFetchPokemonDetail(`${POKEAPI_URL}/${route.params.id}/`)
 
 const displayData = computed(() => {
   if (pokemonData.value === undefined) return null

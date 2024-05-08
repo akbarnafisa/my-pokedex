@@ -41,7 +41,7 @@
 <script setup lang="ts">
 import IconHearth from '@/components/icon/IconHearth.vue'
 import BadgeTypes from './BadgeTypes.vue'
-import { useFetchDetailPage } from '@/utils/request'
+import { useFetchPokemonDetail } from '@/utils/request'
 import Spinner from './Spinner.vue';
 
 const props = defineProps({
@@ -51,7 +51,7 @@ const props = defineProps({
   },
 })
 
-const { data, isLoading, isError } = useFetchDetailPage(props.url)
+const { data, isLoading, isError } = useFetchPokemonDetail(props.url)
 </script>
 
 <style scoped></style>
