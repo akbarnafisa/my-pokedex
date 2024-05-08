@@ -20,7 +20,7 @@
         <section class="mb-4">
           <div class="flex items-center justify-between">
             <h2 class="capitalize text-2xl font-bold">
-              {{ displayData.name }} #{{ displayData.id }}
+              {{ displayData.name.replace('-', ' ') }} #{{ displayData.id }}
             </h2>
             <button>
               <IconHearth />
