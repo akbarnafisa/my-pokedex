@@ -9,9 +9,9 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from 'vue';
+import { PropType } from 'vue'
 import PokeCard from './PokeCard.vue'
-import { PokemonMainQuery } from '@/utils/interface';
+import { PokemonMainQuery } from '@/utils/interface'
 
 const props = defineProps({
   data: {
@@ -26,12 +26,14 @@ const props = defineProps({
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 18px;
+  margin-bottom: 18px;
 }
 
 @media (max-width: 768px) {
   .card-wrapper {
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
+    margin-bottom: 12px;
   }
 }
 
