@@ -6,12 +6,18 @@
     <div v-else-if="data === undefined || isError">
       Fail to fetch data
     </div>
-    <div v-else class="bg-white px-3 pt-3 rounded-lg border">
+    <div
+      v-else
+      class="bg-white px-3 pt-3 rounded-lg border hover:shadow-lg transition duration-200 ease-in-out"
+    >
       <RouterLink :to="`/detail/${data.id}`">
         <figure
           class="bg-gray-100 rounded-lg flex items-center justify-center h-36"
         >
-          <img :src="data.sprites.front_default" :alt="data.sprites.front_default" />
+          <img
+            :src="data.sprites.front_default"
+            :alt="data.sprites.front_default"
+          />
         </figure>
       </RouterLink>
 
@@ -30,6 +36,7 @@
               v-for="item in data.types"
               :key="item.type.name"
               :type="item.type.name"
+              :url="item.type.url"
             />
           </ul>
         </div>
@@ -42,7 +49,7 @@
 import IconHearth from '@/components/icon/IconHearth.vue'
 import BadgeTypes from './BadgeTypes.vue'
 import { useFetchPokemonDetail } from '@/utils/request'
-import Spinner from './Spinner.vue';
+import Spinner from './Spinner.vue'
 
 const props = defineProps({
   url: {

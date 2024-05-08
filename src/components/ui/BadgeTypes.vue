@@ -1,6 +1,7 @@
 <template>
   <li
-    class="capitalize rounded-full text-xs font-bold px-3 py-1"
+    class="capitalize rounded-full text-xs font-bold px-3 py-1 cursor-pointer hover:opacity-70 transition duration-200 ease-in-out"
+    @click="goToTypePage"
     :class="colorScheme"
   >
     {{ type }}
@@ -8,12 +9,20 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
+
 const props = defineProps({
   type: {
     type: String,
     required: true,
   },
+  url: {
+    type: String,
+    required: true,
+  },
 })
+
+const router = useRouter()
 
 const pokemonTypeColors: Record<string, string> = {
   normal: 'bg-gray-300 text-gray-800',
@@ -39,6 +48,18 @@ const pokemonTypeColors: Record<string, string> = {
 }
 
 const colorScheme = pokemonTypeColors[props.type]
+
+const goToTypePage = () => {
+  let parts = props.url.split('/')
+  parts.pop()
+  let id = parts[parts.length - 1]
+  router.push({
+    name: 'type',
+    query: {
+      id,
+    },
+  })
+}
 </script>
 
 <style scoped></style>

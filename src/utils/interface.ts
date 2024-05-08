@@ -29,6 +29,7 @@ export interface PokemonDetailQuery {
   types: {
     type: {
       name: string
+      url: string
     }
   }[]
   weight: number

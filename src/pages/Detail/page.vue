@@ -30,8 +30,9 @@
           <ul class="flex gap-1 mt-2">
             <BadgeTypes
               v-for="item in displayData.types"
-              :key="item"
-              :type="item"
+              :key="item.type"
+              :type="item.type"
+              :url="item.url"
             />
           </ul>
         </section>
@@ -110,7 +111,7 @@ const {
   data: pokemonData,
   isLoading,
   isError,
-} = useFetchPokemonDetail(`${POKEAPI_URL}/${route.params.id}/`)
+} = useFetchPokemonDetail(`${POKEAPI_URL}/pokemon/${route.params.id}/`)
 
 const displayData = computed(() => {
   if (pokemonData.value === undefined) return null
@@ -120,7 +121,10 @@ const displayData = computed(() => {
     name: pokemonData.value.name,
     image: pokemonData.value.sprites.front_default,
     favorited: false,
-    types: pokemonData.value.types.map(item => item.type.name),
+    types: pokemonData.value.types.map(item => ({
+      type: item.type.name,
+      url: item.type.url,
+    })),
     weight: pokemonData.value.weight,
     height: pokemonData.value.height,
     stats: pokemonData.value.stats.map(item => {
