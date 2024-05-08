@@ -20,10 +20,15 @@
         <section class="mb-4">
           <div class="flex items-center justify-between">
             <h2 class="capitalize text-2xl font-bold">
-              {{ displayData.name.replace('-', ' ') }} #{{ displayData.id }}
+              {{ displayData.name.replace('-', ' ') }} #{{
+                displayData.id
+              }}
             </h2>
             <button>
-              <IconHearth />
+              <IconHearth
+                :isFavorited="isPokemonFavorited"
+                @click="() => toggleFavorite(String(displayData?.id))"
+              />
             </button>
           </div>
 
@@ -104,6 +109,7 @@ import IconWeight from '@/components/icon/IconWeight.vue'
 import BadgeTypes from '@/components/ui/BadgeTypes.vue'
 import IconHearth from '@/components/icon/IconHearth.vue'
 import { useFetchPokemonDetail, POKEAPI_URL } from '@/utils/request'
+import { useFavorites } from '@/utils/favorites'
 
 const route = useRoute()
 
@@ -111,7 +117,9 @@ const {
   data: pokemonData,
   isLoading,
   isError,
-} = useFetchPokemonDetail(`${POKEAPI_URL}/pokemon/${route.params.id}/`)
+} = useFetchPokemonDetail(
+  `${POKEAPI_URL}/pokemon/${route.params.id}/`
+)
 
 const displayData = computed(() => {
   if (pokemonData.value === undefined) return null
@@ -133,10 +141,16 @@ const displayData = computed(() => {
         base_stat: item.base_stat,
       }
     }),
-    abilities: pokemonData.value.abilities.map(
-      item => item.ability.name.replace('-', ' ')
+    abilities: pokemonData.value.abilities.map(item =>
+      item.ability.name.replace('-', ' ')
     ),
   }
+})
+
+const { isFavorited, toggleFavorite } = useFavorites()
+
+const isPokemonFavorited = computed(() => {
+  return isFavorited(String(displayData.value?.id))
 })
 </script>
 

@@ -27,7 +27,10 @@
             {{ data.name.replace('-', ' ') }} #{{ data.id }}
           </h2>
           <button>
-            <IconHearth />
+            <IconHearth
+              :isFavorited="isPokemonFavorited"
+              @click="() => toggleFavorite(String(data?.id))"
+            />
           </button>
         </div>
         <div>
@@ -50,6 +53,8 @@ import IconHearth from '@/components/icon/IconHearth.vue'
 import BadgeTypes from './BadgeTypes.vue'
 import { useFetchPokemonDetail } from '@/utils/request'
 import Spinner from './Spinner.vue'
+import { useFavorites } from '@/utils/favorites'
+import { computed } from 'vue'
 
 const props = defineProps({
   url: {
@@ -59,6 +64,12 @@ const props = defineProps({
 })
 
 const { data, isLoading, isError } = useFetchPokemonDetail(props.url)
+
+const { isFavorited, toggleFavorite } = useFavorites()
+
+const isPokemonFavorited = computed(() => {
+  return isFavorited(String(data.value?.id))
+})
 </script>
 
 <style scoped></style>

@@ -11,6 +11,8 @@
   "dependencies": {
     "@tanstack/vue-query": "^5.35.2",
     "@vueuse/core": "^10.9.0",
+    "@vueuse/integrations": "^10.9.0",
+    "idb-keyval": "^6",
     "vue": "^3.4.21",
     "vue-router": "^4.3.2"
   },
