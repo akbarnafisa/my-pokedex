@@ -43,13 +43,13 @@
               class="px-5 py-3 flex items-center gap-2 border rounded-lg"
             >
               <IconWeight />
-              {{ displayData.weight / 10 }}.0kg
+              {{ displayData.weight / 10 }}kg
             </div>
             <div
               class="px-5 py-3 flex items-center gap-2 border rounded-lg"
             >
               <IconHeight />
-              {{ displayData.height / 10 }}.0m
+              {{ displayData.height / 10 }}m
             </div>
           </div>
         </section>
@@ -110,7 +110,7 @@ const {
   data: pokemonData,
   isLoading,
   isError,
-} = useFetchDetailPage(`${POKEAPI_URL}/${route.params.id}`)
+} = useFetchDetailPage(`${POKEAPI_URL}/${route.params.id}/`)
 
 const displayData = computed(() => {
   if (pokemonData.value === undefined) return null
@@ -130,7 +130,7 @@ const displayData = computed(() => {
       }
     }),
     abilities: pokemonData.value.abilities.map(
-      item => item.ability.name
+      item => item.ability.name.replace('-', ' ')
     ),
   }
 })
