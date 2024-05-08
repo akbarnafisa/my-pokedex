@@ -18,7 +18,7 @@
       <section class="pb-5 pt-3">
         <div class="flex items-center justify-between">
           <h2 class="font-bold text-xl capitalize">
-            {{ data.name }} #{{ data.id }}
+            {{ data.name.replace('-', ' ') }} #{{ data.id }}
           </h2>
           <button>
             <IconHearth />
