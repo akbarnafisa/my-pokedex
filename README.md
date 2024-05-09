@@ -44,3 +44,35 @@ To get the frontend running locally:
 - `src/hooks` - reuseable react state based from each use case
 - `src/utils` - various helper utilities
 
+# Design
+
+### API Request
+
+| Path                                                  | Page                                  | Description                                                                     |
+|-------------------------------------------------------|---------------------------------------|---------------------------------------------------------------------------------|
+| `https://pokeapi.co/api/v2/type`                      | `Landing Page`,  `Pokemon Type Page`  | Fetches a list of all Pokemon types                                             |
+| `https://pokeapi.co/api/v2/pokemon?limit=21&offset=0` | `Landing Page`                        | Fetches the Pokemon with limit 21, then using infinite scroll to fetch the data |
+| `https://pokeapi.co/api/v2/pokemon/:id/`              | `Landing Page`, `Pokemon Detail Page` | Fetches detailed information about a specific Pokemon                           |
+| `https://pokeapi.co/api/v2/type/:id`                  | `Landing Page`,  `Pokemon Type Page`  | Fetches a list of Pokemon of a specific type                                    |
+
+
+### Main View
+| Page                  | Path           | Description                                                                                                               |
+|-----------------------|----------------|---------------------------------------------------------------------------------------------------------------------------|
+| `Landing Page`        | `/`            | The main page where users can view a list of Pokemon                                                                      |
+| `Pokemon Detail Page` | `/detail/:id`  | Displays detailed information about a specific Pokemon                                                                    |
+| `Favorite Page`       | `/favorite`    | Shows a list of Pokemon that the user has marked as favorites, we are using indexDB to save the favorited Pokemon locally |
+| `Pokemon Type Page`   | `/type?id=:id` | Displays a list of Pokemon of a specific type                                                                             |
+
+
+
+### UI
+
+All UI components are located inside the `components` folder, which contains three subfolders:
+- `common`: This folder contains components that are shared across all pages.
+- `icon`: This folder contains a list of all icons.
+- `ui`: This folder contains reusable components.
+
+There are two components that handle business logic:
+- `PokeCard.vue`: This component handles API requests to get detailed information about a Pokemon. Due to the design of the API response, we need to fetch the data individually.
+- `SelectType.vue`: This component handles the display of a list of Pokemon types and also manages redirection to the type page.
